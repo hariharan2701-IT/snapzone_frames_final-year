@@ -96,7 +96,7 @@ const Checkout = () => {
           </div>
           <h2 style={styles.successHeading}>Order Placed Successfully!</h2>
           <p style={styles.successText}>
-            Thank you for your purchase. Your order has been received and is
+            Thank you for your purchase😍. Your order has been received and is
             being processed.
           </p>
           <p style={styles.successText}>
@@ -106,7 +106,7 @@ const Checkout = () => {
             style={styles.continueButton}
             onClick={() => (window.location.href = "/")}
           >
-            Continue Shopping
+            Continue Shopping 😍💕
           </button>
         </div>
       ) : (

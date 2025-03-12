@@ -6,7 +6,7 @@ const Categories = ({ onCategorySelect }) => {
     "Magic Mirror Frame",
     "Bouquets",
     "Polaroid",
-    "Customized Chocolate Wrappers",
+    
   ];
 
   return (
