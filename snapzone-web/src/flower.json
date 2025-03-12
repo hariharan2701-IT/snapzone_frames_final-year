@@ -1,0 +1,8 @@
+{
+  "Flower": [
+    { "size": "SINGLE FLOWER", "price": 129, "colors" : ["Red Rose", "Pink Rose"], "image": "/images/single flower.png" },
+    { "size": "SMALL SIZE [5 Flowers] ", "price": 279, "colors" : ["Red Rose", "Pink Rose","Multi-color"], "image": "/images/smallsizeflower.png" },
+    { "size": "MEDIUM SIZE [8 Flowers] ", "price": 399, "colors" : ["Red Rose", "Pink Rose","Multi-color"], "image": "/images/mediumflower.png" },
+    { "size": "LARGE SIZE [12-15 Flowers]", "price": 899, "colors": ["Red Rose", "Pink Rose","Multi-color"], "image": "/images/Largerflower.png" }
+  ]
+}

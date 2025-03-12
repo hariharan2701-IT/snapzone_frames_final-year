@@ -1,0 +1,25 @@
+{
+  "small": [
+    { "size": "4 × 4 Inches", "price": 199, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/4x4.png" },
+    { "size": "4 × 6 Inches", "price": 279, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/4x6.png" },
+    { "size": "5 × 7 Inches", "price": 299, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/5x7.png" },
+    { "size": "6 × 8 Inches", "price": 349, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/6x8.png" }
+  ],
+  "medium": [
+    { "size": "8 × 8 Inches", "price": 349, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/8x8.png" },
+    { "size": "8 × 10 Inches", "price": 399, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/8x10.png" },
+    { "size": "8 × 12 Inches(A4)", "price": 469, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/8x12.png" },
+    { "size": "10 × 12 Inches",  "price": 599, "colors": ["Elegant Black 🖤","Classic White 🤍"], "image": "/images/10x12.png" },
+    { "size": "12 × 15 Inches", "price": 649, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/12x15.png" }
+    
+  ],
+  "large": [
+    { "size": "12 × 18 Inches(A3)", "price": 699, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/12x18.png" },
+    { "size": "18 × 12 Inches(A3)", "price": 699, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/18x12.png" },
+    { "size": "16 × 20 Inches", "price": 799, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/16x20.png" },
+    { "size": "18 × 24 Inches", "price": 1399, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/18x24.png" },
+    { "size": "20 × 24 Inches", "price": 1899, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/20x24.png" },
+    { "size": "20 × 30 Inches", "price": 2799, "colors": ["Sleek Black 🖤", "Classic White 🤍"], "image": "/images/20x30.jpg" }
+    
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "pola": [
+        { "size": "Rectangle [Each pics]", "price": 9, "colors": [ " White 🤍"], "image": "/images/Rectanglepola.png" },
+        { "size": "Square [Each pics] ", "price": 14, "colors": [" White 🤍"], "image": "/images/" },
+        { "size": "Photo Strips(3 layer)", "price": 35, "colors": [" White with Black Border 🤍"], "image": "/images/" },
+        { "size": "Photo Strips(4 layer)", "price": 45, "colors": [" White with Black Border 🤍"], "image": "/images/" }
+       
+      ]
+    }

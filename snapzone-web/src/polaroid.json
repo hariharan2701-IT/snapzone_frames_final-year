@@ -1,0 +1,9 @@
+{
+    "Polarids": [
+        { "size": "Rectangle [Each pics]", "price": 9, "colors": [ " White 🤍"], "image": "/images/Rectanglepola.png" },
+        { "size": "Square [Each pics] ", "price": 14, "colors": [" White 🤍"], "image": "/images/Squarepola.png" },
+        { "size": "3 layer Photo Booth Strip [Each]", "price": 29, "colors": [" White 🤍"], "image": "/images/3layerpola.png" },
+        { "size": "4 layer Photo Booth Strip [Each]", "price": 44, "colors": [" White🤍"], "image": "/images/4layerpola.png" }
+       
+      ]
+    }

@@ -1,0 +1,8 @@
+{
+"Various": [
+    { "size": "CIRCLE (SMALL SIZE)", "price": 399, "colors": [ " White 🤍"], "image": "/images/mirror1.png" },
+    { "size": "CIRCLE (LARGER SIZE)", "price": 599, "colors": [" White 🤍"], "image": "/images/mirror2.png" },
+    { "size": "SQUARE (SMALL SIZE)", "price": 399, "colors": [" White with Black Border 🤍"], "image": "/images/mirror3.png" },
+    { "size": "SQUARE (LARGER SIZE)", "price": 599, "colors": [" White 🤍 "], "image": "/images/mirror4.png" }
+  ]
+}
