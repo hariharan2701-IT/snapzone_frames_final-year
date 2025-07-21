@@ -369,9 +369,31 @@ body {
 
 /* Media Query Adjustments (if needed) */
 @media screen and (max-width: 768px) {
+    .navbar-search-container {
+        display: none !important;
+    }
+    
+    .navbar-desktop-nav {
+        display: none !important;
+    }
+    
+    .navbar-mobile-menu-button {
+        display: block !important;
+    }
+    
     .category-btn {
         font-size: 14px;
         padding: 10px 20px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .navbar-search-container {
+        display: block !important;
+    }
+    
+    .navbar-mobile-menu-button {
+        display: none !important;
     }
 }
 

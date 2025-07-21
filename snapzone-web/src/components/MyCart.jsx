@@ -1,54 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useCart } from "../contexts/CartContext"
+import { useAuth } from "../contexts/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 const MyCart = () => {
-  const [cartItems, setCartItems] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [total, setTotal] = useState(0)
-
-  useEffect(() => {
-    setIsLoading(true)
-    //instead of hari123 use userid after auth
-    fetch("http://localhost:5000/api/cart/hari123")
-      .then((res) => res.json())
-      .then((data) => {
-        setCartItems(data)
-        calculateTotal(data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.error("Error fetching cart items:", error)
-        setIsLoading(false)
-      })
-  }, [])
-
-  const calculateTotal = (items) => {
-    const sum = items.reduce((acc, item) => acc + item.frameData.price * (item.quantity || 1), 0)
-    setTotal(sum)
-  }
-
-  const updateQuantity = (index, newQuantity) => {
-    if (newQuantity < 1) return
-
-    const updatedItems = [...cartItems]
-    updatedItems[index] = {
-      ...updatedItems[index],
-      quantity: newQuantity,
-    }
-
-    setCartItems(updatedItems)
-    calculateTotal(updatedItems)
-  }
-
-  const removeItem = (index) => {
-    const itemElement = document.getElementById(`cart-item-${index}`)
-    itemElement.classList.add("item-removing")
-
-    setTimeout(() => {
-      const updatedItems = cartItems.filter((_, i) => i !== index)
-      setCartItems(updatedItems)
-      calculateTotal(updatedItems)
-    }, 300)
-  }
+  const { cartItems, loading, updateQuantity, removeFromCart, getCartTotal } = useCart()
+  const { user } = useAuth()
+  const navigate = useNavigate()
+  
+  const total = getCartTotal()
+  const shippingCost = total > 0 ? 100 : 0
 
   return (
     <div style={styles.container}>
@@ -90,7 +51,14 @@ const MyCart = () => {
 
       <h2 style={styles.heading}>My Shopping Cart</h2>
 
-      {isLoading ? (
+      {!user ? (
+        <div className="empty-cart-message">
+          <p>Please sign in to view your cart</p>
+          <button style={styles.browseButton} onClick={() => navigate("/")}>
+            Go to Home
+          </button>
+        </div>
+      ) : loading ? (
         <div style={styles.loadingContainer}>
           {[1, 2, 3].map((_, index) => (
             <div key={index} style={styles.loadingItem}>
@@ -105,7 +73,7 @@ const MyCart = () => {
       ) : cartItems.length === 0 ? (
         <div className="empty-cart-message">
           <p>Your cart is empty</p>
-          <button style={styles.browseButton} onClick={() => (window.location.href = "/")}>
+          <button style={styles.browseButton} onClick={() => navigate("/")}>
             Browse Products
           </button>
         </div>
@@ -113,34 +81,35 @@ const MyCart = () => {
         <div style={styles.cartItemsContainer}>
           {cartItems.map((item, index) => (
             <div
-              key={index}
-              id={`cart-item-${index}`}
+              key={item.id}
+              id={`cart-item-${item.id}`}
               style={{
                 ...styles.cartItem,
                 animationDelay: `${index * 0.1}s`,
               }}
             >
               <div style={styles.itemImage}>
-                <img src={item.frameData.image || "/placeholder.svg"} alt="Frame" style={styles.image} />
+                <img src={item.image_url || "/placeholder.svg"} alt="Frame" style={styles.image} />
               </div>
 
               <div style={styles.itemDetails}>
-                <h3 style={styles.itemTitle}>{item.frameData.size}</h3>
-                <p style={styles.itemPrice}>₹{item.frameData.price}</p>
+                <h3 style={styles.itemTitle}>{item.product_name}</h3>
+                <p style={styles.itemColor}>Color: {item.color}</p>
+                <p style={styles.itemPrice}>₹{item.price}</p>
                 <div style={styles.quantityControls}>
-                  <button style={styles.quantityButton} onClick={() => updateQuantity(index, (item.quantity || 1) - 1)}>
+                  <button style={styles.quantityButton} onClick={() => updateQuantity(item.id, item.quantity - 1)}>
                     -
                   </button>
-                  <span style={styles.quantityValue}>{item.quantity || 1}</span>
-                  <button style={styles.quantityButton} onClick={() => updateQuantity(index, (item.quantity || 1) + 1)}>
+                  <span style={styles.quantityValue}>{item.quantity}</span>
+                  <button style={styles.quantityButton} onClick={() => updateQuantity(item.id, item.quantity + 1)}>
                     +
                   </button>
                 </div>
               </div>
 
               <div style={styles.itemActions}>
-                <p style={styles.itemSubtotal}>₹{item.frameData.price * (item.quantity || 1)}</p>
-                <button style={styles.removeButton} onClick={() => removeItem(index)}>
+                <p style={styles.itemSubtotal}>₹{item.price * item.quantity}</p>
+                <button style={styles.removeButton} onClick={() => removeFromCart(item.id)}>
                   Remove
                 </button>
               </div>
@@ -149,7 +118,7 @@ const MyCart = () => {
         </div>
       )}
 
-      {!isLoading && cartItems.length > 0 && (
+      {!loading && cartItems.length > 0 && user && (
         <div style={styles.cartSummary}>
           <div style={styles.summaryRow}>
             <span>Subtotal:</span>
@@ -157,14 +126,14 @@ const MyCart = () => {
           </div>
           <div style={styles.summaryRow}>
             <span>Shipping:</span>
-            <span>₹{total > 0 ? 100 : 0}</span>
+            <span>₹{shippingCost}</span>
           </div>
           <div style={{ ...styles.summaryRow, ...styles.totalRow }}>
             <span>Total:</span>
-            <span>₹{total > 0 ? total + 100 : 0}</span>
+            <span>₹{total + shippingCost}</span>
           </div>
 
-          <button style={styles.checkoutButton} onClick={() => (window.location.href = "/checkout")}>
+          <button style={styles.checkoutButton} onClick={() => navigate("/checkout")}>
             Proceed to Checkout
           </button>
         </div>
@@ -231,6 +200,11 @@ const styles = {
     fontWeight: "bold",
     marginBottom: "8px",
     color: "#2c3e50",
+  },
+  itemColor: {
+    fontSize: "14px",
+    color: "#7f8c8d",
+    marginBottom: "8px",
   },
   itemPrice: {
     fontSize: "16px",
